@@ -4,9 +4,9 @@ August 6, 2018
 
 Setup and configuration help for external eGPUs on a Mac System. 
 
-NVIDIA Titan Xp gpu
-Atikio Node Pro enclosure
-Cabling: If using Thunderbolt 3 cables, the cable must be the high speed version (40 gbps). A USB-C end is not sufficient for high speed transfer.  Cables over 0.8m may not allow for 40gbps transfer speeds.  If using TB1/TB2, you need the TB3 -> TB2 adapter (https://www.apple.com/shop/product/MMEL2AM/A/thunderbolt-3-usb-c-to-thunderbolt-2-adapter) and a standard TB2 cable. (note: the TB3 plug goes into the eGPU and the 
+- NVIDIA Titan Xp gpu
+- Atikio Node Pro enclosure
+- Cabling: If using Thunderbolt 3 cables, the cable must be the high speed version (40 gbps). A USB-C end is not sufficient for high speed transfer.  Cables over 0.8m may not allow for 40gbps transfer speeds.  If using TB1/TB2, you need the TB3 -> TB2 adapter (https://www.apple.com/shop/product/MMEL2AM/A/thunderbolt-3-usb-c-to-thunderbolt-2-adapter) and a standard TB2 cable. (note: the TB3 plug goes into the eGPU and the 
 
 
 
@@ -100,12 +100,9 @@ nano .bashrc
 In the editor window, paste in the following parameters
 
 ```
-
 export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
 
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.2/lib\ ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
-
-#export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"
 
 export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
 
