@@ -11,30 +11,33 @@ Cabling: If using Thunderbolt 3 cables, the cable must be the high speed version
 
 
 There are two paths that can be considered –
-Manual installation of NVIDIA web drivers and CUDA, but this approach still requires an OS patch to enable eGPU support. 
+*  Manual installation of NVIDIA web drivers and CUDA, but this approach still requires an OS patch to enable eGPU support. 
 
-The second is to use on of the all-in-one scripts that are now available. Check the license agreements on the scripts to make sure they are consistent with your needs. 
+*  The second is to use on of the all-in-one scripts that are now available. Check the license agreements on the scripts to make sure they are consistent with your needs. 
 
 Step 1: Back up
 
 There will be several important changes to the OS and the configuration. You may elect to do a full system backup before beginning to a new external drive via Time Machine. If you have a previous Time Machine backup, this can be used, but sometimes, it is easier to have just one clean backup to work from. 
 
 You can speed up the first back up by using this command:
+```
 sudo sysctl debug.lowpri_throttle_enabled=0
-
+```
 
 After the back up has been completed, re-enable the low priority task throttling
+```
 sudo sysctl debug.lowpri_throttle_enabled=1
-
+```
 
 Step 2: disable system integrity protections (referred to as SIP frequently online)
-
+```
 csrutil disable
+```
 
 Reboot
 
 Verify status:
-
+```
 csrutil status
-
+```
 
