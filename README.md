@@ -124,5 +124,15 @@ if [ -f $HOME/.bashrc ]; then
 fi
 
 ```
+Command o followed by command x to save and exit the nano program.
 
 * Reboot
+
+While you might have success bashing the profile files, it is simplier to just reboot.
+
+Step 5: Install cuDNN
+
+Access to NVIDIA deep learning libraries requires access to their developer site. They grant free access, but you must register.
+
+Go to developer.nvidia.com and follow the steps for registration.
+
