@@ -72,4 +72,60 @@ macos-egpu
 
 And follow the instructions on the screen.
 
+* Reboot and rerun
 
+Depending on your system configuration, you may need to reboot and rerun the `macos-egpu` script multiple times. Older machines will need to have a TB1/TB2 patch. The system will automatically install the latest NVIDIA CUDA drivers and Web Drivers.   
+
+* Run "Check" one more time
+
+```
+macos-egpu -C
+```
+
+Verify that all looks well and there are no scheduled updates.
+
+Step 4: Configure CUDA
+
+At the end of Step 3, at time of writing, the computer will have CUDA 9.2 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
+
+* Edit `.bashrc`
+
+Change to your home directory (`cd ~` from a terminal). 
+
+type
+```
+nano .bashrc
+```
+
+In the editor window, paste in the following parameters
+
+```
+
+export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
+
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.2/lib\ ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+
+#export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"
+
+export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
+
+export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
+```
+
+If you are not used to using nano, use control o to write the file changes to disk. Then use control x to close (note: this is control and not the typical Mac command).
+
+* Edit the `.bash_profile` file
+
+```
+nano .bash_profile
+```
+
+Then paste in this command
+```
+if [ -f $HOME/.bashrc ]; then
+        source $HOME/.bashrc
+fi
+
+```
+
+* Reboot
