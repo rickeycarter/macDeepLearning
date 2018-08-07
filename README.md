@@ -201,8 +201,9 @@ At this point, compiling a few test samples is possible, but first, you need to 
 
 For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation, which will be involved later in the process. 
 
-Download Xcode to your ~/Downloads/ directory.  Double click on it to uncompress it (this is time consuming, be patient).
-After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler.
+Download Xcode to your ~/Downloads/ directory.  Double click on it to uncompress it. This is time consuming, be patient. Ensure your computer has good ventilation to avoid thermal throttling. 
+
+After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler. These system commands run much faster than the UI copy and paste options. 
 ```
 cd ~/Downloads/
 mv Xcode.app Xcode-9.2.app
@@ -213,7 +214,7 @@ sudo xcodebuild -license
 
 Now change directories to where the CUDA samples are stored and compile a few of them.
 ```
-cd /Developer/NVIDIA/CUDA-9.2/sample
+cd /Developer/NVIDIA/CUDA-9.2/samples
 make -C 1_Utilities/deviceQuery
 ```
 
@@ -221,10 +222,19 @@ Step 7: Connecting the eGPU
 
 Once you compile the deviceQuery program, the output will be located here:
 ```
-..../bin/Darwin...something another
+/Developer/NVIDIA/CUDA-9.2/samples/bin/x86_64/darwin/release
 ```
 
-You can double click on the program and run it without the eGPU connect.  It should report a CUDA error indicating no device was found. This is normal.  We are now ready to test the eGPU.
+You can double click on the program and run it without the eGPU connected.  It should report a CUDA error indicating no device was found. This is normal.  
+
+```
+cudaGetDeviceCount returned 35
+-> CUDA driver version is insufficient for CUDA runtime version
+Result = FAIL
+```
+
+
+We are now ready to test the eGPU.
 
 The approach to connect the eGPU appears to vary based on computer with MacBook Pros seemingly being more reliable than iMac. To start the process, try this approach.
 
