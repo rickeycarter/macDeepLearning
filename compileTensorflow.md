@@ -105,3 +105,25 @@ Now install the wheel into your python directory. The pip3 assumes you are using
 ```
 sudo -H pip3 install ~/Desktop/tensorflow-1.5.0rc0-cp36-cp36m-macosx_10_13_x86_64.whl
 ```
+
+At this point, one might as well install Keras to provide a test environment.
+
+```
+sudo -H pip3 install keras
+```
+
+Now, you can test the installations:
+
+At the terminal, type python.
+
+IMPORTANT: It is critical to always launch Python and later R from the terminal to have the envirnment variables realized. 
+
+```
+import tensorflow as tf
+import keras
+
+# check versions
+print(tf.__version__)
+print(keras.__version__)
+# verify that keras indicates using TensorFlow as the backend.
+```
