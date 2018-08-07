@@ -1,10 +1,19 @@
 Draft Steps to compiling Tensorflow 1.5 with GPU Support for a Mac.
 
+
+There are published builds on the internet for compiling TensorFlow for a Mac.  The following utilizes the approach published on Tweakmind.
+
+<url>https://tweakmind.com/tensorflow-1-5-macos-10-13-2/</url>
+
+
+
 Notes on the configuration commands.
 
 For most items, you will say no. 
 
 For the cuDNN version, you need to match the file name of `libcudnn.7.dylib` stored in /usr/local/cuda. For the time being, that is a numeric 7. No decimal places.
+
+
 
 ```
 computer:tensorflow m070316$ ./configure
@@ -82,5 +91,17 @@ Configuration finished
 Now compile based on the above configuration
 
 ```
-bazel build --config=cuda --config=opt --copt=-msse4.2 --copt=-mpopcnt --copt=-maes --copt=-mcx16 --verbose_failures --action_env PATH --action_env
+bazel build --config=cuda --config=opt --copt=-msse4.2 --copt=-mpopcnt --copt=-maes --copt=-mcx16 --verbose_failures --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package
+```
+
+Should the compile without error (yes, it will take some time), you should be able to build the Python wheel that can be install. This builds the wheel and saves it onto the desktop.
+
+```
+bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/Desktop
+```
+
+Now install the wheel into your python directory. The pip3 assumes you are using Python 3.x. If you are using Anaconda, you can use just pip as they have aliased pip3 to pip for ease of use.  The name may have changed slightly based on options and/or python versions. The easiest option is to just use tab to autocomplete/expand the full file name.  sudo -H is to help with permissions and ensure you have access to install. This is essential if you are using the native python on a Mac (which is not recommended). 
+
+```
+sudo -H pip3 install ~/Desktop/tensorflow-1.5.0rc0-cp36-cp36m-macosx_10_13_x86_64.whl
 ```
