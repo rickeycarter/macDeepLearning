@@ -53,6 +53,8 @@ At this point, SIP should indicate it has been disabled.
 
 Step 3: Run the macOS-eGPU script
 
+IMPORTANT: The eGPU should be disconnected from the computer at this point. You can have it all assembled, but do not plug it into the computer at this time.
+
 Using the up-to-date documentation on @learex page, run the automated script. You can view and verify the code he uses on GitHub. This is a good practice to consider when running code at the administrator level on your computer.
 
 
@@ -97,12 +99,12 @@ Execute the following command to have the GPU CUDA drivers installed
 macos-egpu --cudaDriver
 ```
 
-Install the toolkit
+Install the toolkit, which should also include the samples.
 ```
 macos-egpu --cudaToolkit
 ```
+If the samples are not installed, the following can be used to install them. They are helpful for testing the GPU once it is attached. 
 
-And finally, the CUDA samples, which can be compiled to test the GPU, are installed with.
 ```
 macos-egpu --cudaSamples
 ```
