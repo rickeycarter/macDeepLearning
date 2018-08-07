@@ -88,7 +88,14 @@ Verify that all looks well and there are no scheduled updates.
 
 Step 4: Configure CUDA
 
-At the end of Step 3, at time of writing, the computer will have CUDA 9.2 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
+* Install CUDA
+
+Execute the following command to have CUDA 
+```
+macos-egpu -c
+```
+
+The computer will have CUDA 9.2 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
 
 * Edit `.bashrc`
 
