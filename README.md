@@ -157,5 +157,22 @@ Step 5: Install cuDNN
 
 Access to NVIDIA deep learning libraries requires access to their developer site. They grant free access, but you must register.
 
-Go to developer.nvidia.com and follow the steps for registration.
+Go to developer.nvidia.com and follow the steps for registration. cuDNN can be downloaded at <url>https://developer.nvidia.com/cudnn</url>. 
+
+You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.1.4 for Mac OSX for CUDA 9.2.  
+
+After downloading and uncompressing the files, follow the steps to copy the libraries over to the appropriate directories.
+<url>https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html</url>
+
+Briefly, 
+```
+cd ~/Downloads
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib
+sudo chmod a+r /usr/local/cuda/include/cudnn.h 
+sudo chmod a+r /usr/local/cuda/lib/libcudnn*
+```
+
+(the necessary environment variable for cuDNN was set above into the .bashrc file)
+
 
