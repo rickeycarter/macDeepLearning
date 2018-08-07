@@ -216,3 +216,20 @@ Now change directories to where the CUDA samples are stored and compile a few of
 cd /Developer/NVIDIA/CUDA-9.2/sample
 make -C 1_Utilities/deviceQuery
 ```
+
+Step 7: Connecting the eGPU
+
+Once you compile the deviceQuery program, the output will be located here:
+```
+..../bin/Darwin...something another
+```
+
+You can double click on the program and run it without the eGPU connect.  It should report a CUDA error indicating no device was found. This is normal.  We are now ready to test the eGPU.
+
+The approach to connect the eGPU appears to vary based on computer with MacBook Pros seemingly being more reliable than iMac. To start the process, try this approach.
+
+Log out of the computer but do not restart (Apple - Log out). Once you are presented the log on fields, connect the eGPU to the computer. If all goes well, you should see and hear the eGPU / GPU come to life (indicator lights and fan noises). In prior eGPU releases, you would wait for the screen to flash indicating the drivers had flipped to the external GPU.  Give the computer about 30 seconds and then log into the computer. 
+
+You should be able to open System Preferences (Apple - System Preferences) and then click on the CUDA app. The app should report a GPU being found. Now using the left arrow to return back to the main System Preferences panel. Then, click on the NVIDIA Device Manager app. This should report the Titan Xp GPU under a few tabs.
+
+If you see the GPU in both places, try to rerun the deviceQuery app that was compiled above. If this run, your eGPU is now fully configured and the next steps are to update the Python installation and obtained (compile) a TensorFlow wheel with GPU support for the MacOS. It is worth noting, as will be shown, that everything needs to be synchronized with versions for Python, CUDA and OS. Compiling from the source helps with this. Downloading wheels off the internet will inevitably not work until you realize you have to be selective with what you find. 
