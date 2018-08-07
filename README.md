@@ -99,11 +99,11 @@ Execute the following command to have the GPU CUDA drivers installed
 macos-egpu --cudaDriver
 ```
 
-Install the toolkit, which should also include the samples.
+Install the toolkit.
 ```
 macos-egpu --cudaToolkit
 ```
-If the samples are not installed, the following can be used to install them. They are helpful for testing the GPU once it is attached. 
+Install the CUDA samples. They are helpful for testing the GPU once it is attached. 
 
 ```
 macos-egpu --cudaSamples
@@ -179,4 +179,6 @@ sudo chmod a+r /usr/local/cuda/lib/libcudnn*
 echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/local/cuda/include -L/usr/local/cuda/lib -lcudnn
 ```
 
+Step 6: Compile a few CUDA test programs
 
+The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\
