@@ -90,9 +90,21 @@ Step 4: Configure CUDA
 
 * Install CUDA
 
-Execute the following command to have CUDA 
+If after running the check above you find that CUDA and the smaples are not installed, you can install them using the following commands
+
+Execute the following command to have the GPU CUDA drivers installed 
 ```
-macos-egpu -c
+macos-egpu --cudaDriver
+```
+
+Install the toolkit
+```
+macos-egpu --cudaToolkit
+```
+
+And finally, the CUDA samples, which can be compiled to test the GPU, are installed with.
+```
+macos-egpu --cudaSamples
 ```
 
 The computer will have CUDA 9.2 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
