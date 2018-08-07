@@ -173,6 +173,10 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h
 sudo chmod a+r /usr/local/cuda/lib/libcudnn*
 ```
 
-(the necessary environment variable for cuDNN was set above into the .bashrc file)
+(the necessary environment variable for cuDNN was set above into the .bashrc file). So, you should be able to run this command without error. The system may report a warning, but an error is a problem. If you have an error, verify the paths above and reboot.
+
+```
+echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/local/cuda/include -L/usr/local/cuda/lib -lcudnn
+```
 
 
