@@ -178,7 +178,18 @@ sudo chmod a+r /usr/local/cuda/lib/libcudnn*
 ```
 echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/local/cuda/include -L/usr/local/cuda/lib -lcudnn
 ```
+You can also do a simple test to make sure CUDA is working properly.
 
+```
+kextstat | grep -i cuda
+```
+
+This should return something along these lines. An error indicates a problem with your CUDA installation. Check your environment variables once again.
+
+```
+ 168    0 0xffffff7f80d2e000 0x2000     0x2000     com.nvidia.CUDA (1.1.0) E13478CB-B251-3C0A-86E9-A6B56F528FE8 <4 1>
+```
+ 
 Step 6: Compile a few CUDA test programs
 
 The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\CUDA-9.2\samples`.
