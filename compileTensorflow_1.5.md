@@ -1,9 +1,15 @@
-Draft Steps to compiling Tensorflow 1.5 with GPU Support for a Mac.
+# Draft Steps to compiling Tensorflow 1.5 with GPU Support for a Mac.
 
 
-There are published builds on the internet for compiling TensorFlow for a Mac.  The following utilizes the approach published on Tweakmind.
+**IMPORTANT:** Read the links guide carefully along with the TensorFlow documentation. There are subtle requirements such as Xcode and Bazel versions that need to be satisfied. Compiling TF version 1.5 requires different versions than TF version 1.9. 
 
-<url>https://tweakmind.com/tensorflow-1-5-macos-10-13-2/</url>
+Resources
+
+- https://www.tensorflow.org/install/install_sources
+
+- https://tweakmind.com/tensorflow-1-5-macos-10-13-2/
+
+There are published builds on the internet for compiling TensorFlow for a Mac.  The following utilizes the approach published on Tweakmind, referenced above.
 
 
 

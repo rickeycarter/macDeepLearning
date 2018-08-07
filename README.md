@@ -2,7 +2,9 @@
 
 August 6, 2018
 
-Setup and configuration help for external eGPUs on a Mac System. 
+# Setup and configuration help for external eGPUs on a Mac System. 
+
+## Shopping List
 
 - NVIDIA Titan Xp gpu (https://www.nvidia.com/en-us/titan/titan-xp/)
 
@@ -22,7 +24,7 @@ This guide is going to use option 2, building upon the tremendous work happening
 https://github.com/learex/macOS-eGPU
 
 
-Step 1: Back up
+# Step 1: Back up
 
 There will be several important changes to the OS and the configuration. You may elect to do a full system backup before beginning to a new external drive via Time Machine. If you have a previous Time Machine backup, this can be used, but sometimes, it is easier to have just one clean backup to work from. 
 
@@ -36,7 +38,7 @@ After the back up has been completed, re-enable the low priority task throttling
 sudo sysctl debug.lowpri_throttle_enabled=1
 ```
 
-Step 2: disable system integrity protections (referred to as SIP frequently online)
+# Step 2: disable system integrity protections (referred to as SIP frequently online)
 
 In the terminal, enter
 ```
@@ -88,7 +90,7 @@ macos-egpu -C
 
 Verify that all looks well and there are no scheduled updates.
 
-Step 4: Configure CUDA
+# Step 4: Configure CUDA
 
 * Install CUDA
 
@@ -153,7 +155,7 @@ Command o followed by command x to save and exit the nano program.
 
 While you might have success bashing the profile files, it is simplier to just reboot.
 
-Step 5: Install cuDNN
+# Step 5: Install cuDNN
 
 Access to NVIDIA deep learning libraries requires access to their developer site. They grant free access, but you must register.
 
@@ -190,7 +192,7 @@ This should return something along these lines. An error indicates a problem wit
  168    0 0xffffff7f80d2e000 0x2000     0x2000     com.nvidia.CUDA (1.1.0) E13478CB-B251-3C0A-86E9-A6B56F528FE8 <4 1>
 ```
  
-Step 6: Compile a few CUDA test programs
+# Step 6: Compile a few CUDA test programs
 
 The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\CUDA-9.2\samples`.
 
@@ -218,7 +220,7 @@ cd /Developer/NVIDIA/CUDA-9.2/samples
 make -C 1_Utilities/deviceQuery
 ```
 
-Step 7: Connecting the eGPU
+# Step 7: Connecting the eGPU
 
 Once you compile the deviceQuery program, the output will be located here:
 ```
@@ -246,3 +248,8 @@ If you see the GPU in both places, try to rerun the deviceQuery app that was com
 
 Example of a step-by-step Compilation:
 <url>https://gist.github.com/orpcam/73b208271856fa2ae7efc00a8768bd7c#gistcomment-2397350</url>
+
+
+# Next Steps - Compile TensorFlow
+
+TensorFlow specific builds and configurations are posted. These are a work in progress. Precompiled wheels are also made available as we have more success with compilation.
