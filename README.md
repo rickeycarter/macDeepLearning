@@ -4,8 +4,10 @@ August 6, 2018
 
 Setup and configuration help for external eGPUs on a Mac System. 
 
-- NVIDIA Titan Xp gpu
-- Atikio Node Pro enclosure
+- NVIDIA Titan Xp gpu (https://www.nvidia.com/en-us/titan/titan-xp/)
+
+- AkiTio Node Pro enclosure (https://www.akitio.com/expansion/node-pro)
+
 - Cabling: If using Thunderbolt 3 cables, the cable must be the high speed version (40 gbps). A USB-C end is not sufficient for high speed transfer.  Cables over 0.8m may not allow for 40gbps transfer speeds.  If using TB1/TB2, you need the TB3 -> TB2 adapter (https://www.apple.com/shop/product/MMEL2AM/A/thunderbolt-3-usb-c-to-thunderbolt-2-adapter) and a standard TB2 cable. (note: the TB3 plug goes into the eGPU and the 
 
 
@@ -74,7 +76,7 @@ And follow the instructions on the screen.
 
 * Reboot and rerun
 
-Depending on your system configuration, you may need to reboot and rerun the `macos-egpu` script multiple times. Older machines will need to have a TB1/TB2 patch. The system will automatically install the latest NVIDIA CUDA drivers and Web Drivers.   
+Depending on your system configuration, you may need to reboot and rerun the `macos-egpu` script multiple times. Older machines will need to have a TB1/TB2 patch. The system will automatically install the latest NVIDIA CUDA drivers and Web Drivers.   If you are using the AkiTio Node Pro, the chipset is T83, so you can indicate no to the question when prompted. 
 
 * Run "Check" one more time
 
