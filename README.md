@@ -166,7 +166,7 @@ After downloading and uncompressing the files, follow the steps to copy the libr
 
 Briefly, 
 ```
-cd ~/Downloads
+cd ~/Downloads/
 sudo cp cuda/include/cudnn.h /usr/local/cuda/include
 sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib
 sudo chmod a+r /usr/local/cuda/include/cudnn.h 
