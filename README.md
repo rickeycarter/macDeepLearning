@@ -233,3 +233,6 @@ Log out of the computer but do not restart (Apple - Log out). Once you are prese
 You should be able to open System Preferences (Apple - System Preferences) and then click on the CUDA app. The app should report a GPU being found. Now using the left arrow to return back to the main System Preferences panel. Then, click on the NVIDIA Device Manager app. This should report the Titan Xp GPU under a few tabs.
 
 If you see the GPU in both places, try to rerun the deviceQuery app that was compiled above. If this run, your eGPU is now fully configured and the next steps are to update the Python installation and obtained (compile) a TensorFlow wheel with GPU support for the MacOS. It is worth noting, as will be shown, that everything needs to be synchronized with versions for Python, CUDA and OS. Compiling from the source helps with this. Downloading wheels off the internet will inevitably not work until you realize you have to be selective with what you find. 
+
+Example of a step-by-step Compilation:
+<url>https://gist.github.com/orpcam/73b208271856fa2ae7efc00a8768bd7c#gistcomment-2397350</url>
