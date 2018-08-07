@@ -181,4 +181,27 @@ echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/lo
 
 Step 6: Compile a few CUDA test programs
 
-The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\
+The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\CUDA-9.2\samples`.
+
+This directory is write-protected by default. You can copy this folder to your home drive if you would like, or, you could change the permissions on this directory only. Using finder, right click over the samples directory and select "get info". From here, you will see the permissions tab. Click the padlock in the lower right to unlock the permission. Click the "+" and add your username. Change the permission to read + write. There's one last step which is in the small gear: select "apply to enclosed items" to recursively apply the permissions.
+
+At this point, compiling a few test samples is possible, but first, you need to verify the correct XCode versions. This documentation is available here:
+<url>https://docs.nvidia.com/cuda/</url>
+
+For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation, which will be involved later in the process. 
+
+Download Xcode to your ~/Downloads/ directory.  Double click on it to uncompress it (this is time consuming, be patient).
+After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler.
+```
+cd ~/Downloads/
+mv Xcode.app Xcode-9.2.app
+sudo mv Xcode-9.2.app /Applications
+sudo xcode-select -s /Applications/Xcode-9.2.app
+sudo xcodebuild -license
+```
+
+Now change directories to where the CUDA samples are stored and compile a few of them.
+```
+cd /Developer/NVIDIA/CUDA-9.2/sample
+make -C 1_Utilities/deviceQuery
+```
