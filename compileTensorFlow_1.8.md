@@ -68,3 +68,9 @@ For most items, you will say no.
 
 For the cuDNN version, you need to match the file name of `libcudnn.7.dylib` stored in /usr/local/cuda. For the time being, that is a numeric 7. No decimal places.
 
+
+
+
+# Prebuilt Wheel
+
+A pre-built TensorFlow wheel for CUDA 9.2, Python version 3.6.4 is available.  See files.
