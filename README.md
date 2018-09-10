@@ -32,6 +32,7 @@ https://github.com/learex/macOS-eGPU
 
 * Open an app from the terminal so that environment variables are seen: `open -a {app name}`, e.g., `open -a RStudio`. 
 
+* Show GPU and CPU utilization. Open the Activity Monitor app. Command + 4 opens a panel with GPU utilziation. Command + 3 show the CPU core utilization.
 
 # Step 0: Basic Installation of Software
 
