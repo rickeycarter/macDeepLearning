@@ -74,6 +74,20 @@ Note: It is suspected that many other 3.6.* versions would work. Some online res
 
 As an aside on python, MacOS comes with a default version of python installed (2.7). This will be incompatiable with many modern packages. Anaconda will automatically mask out the old 2.7 installation on the Mac and make things like `pip install` work directly (instead of having to specify `pip3 install`). 
 
+## XCode 9.2
+For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation and compilation, which will be involved later in the process. 
+
+Download Xcode version 9.2 from https://developer.apple.com/downloads.  This will save the Xcode_9.2.xip file to your ~/Downloads/ directory.  Double click on it to uncompress it. This is time consuming, be patient. Ensure your computer has good ventilation to avoid thermal throttling. It is surprisingly computationally intensive. 
+
+After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler. These system commands run much faster than the UI copy and paste options. 
+```
+cd ~/Downloads/
+mv Xcode.app Xcode-9.2.app
+sudo mv Xcode-9.2.app /Applications
+sudo xcode-select -s /Applications/Xcode-9.2.app
+sudo xcodebuild -license
+```
+
 # Step 1: Back up
 
 There will be several important changes to the OS and the configuration. You may elect to do a full system backup before beginning to a new external drive via Time Machine. If you have a previous Time Machine backup, this can be used, but sometimes, it is easier to have just one clean backup to work from. 
@@ -212,7 +226,7 @@ Access to NVIDIA deep learning libraries requires access to their developer site
 
 Go to developer.nvidia.com and follow the steps for registration. cuDNN can be downloaded at <url>https://developer.nvidia.com/cudnn</url>. 
 
-You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.1.4 for Mac OSX for CUDA 9.2.  
+You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.2.1 for Mac OSX for CUDA 9.2.  
 
 After downloading and uncompressing the files, follow the steps to copy the libraries over to the appropriate directories.
 <url>https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html</url>
@@ -226,11 +240,12 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h
 sudo chmod a+r /usr/local/cuda/lib/libcudnn*
 ```
 
-(the necessary environment variable for cuDNN was set above into the .bashrc file). So, you should be able to run this command without error. The system may report a warning, but an error is a problem. If you have an error, verify the paths above and reboot.
+(the necessary environment variable for cuDNN was set above into the .bashrc file). So, you should be able to run this command without error. The system may report a warning, but an error is a problem. If you have an error, verify the paths above and reboot.  You may see an error that version 9.1 of host complier is not supported. We will update that below.
 
 ```
 echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/local/cuda/include -L/usr/local/cuda/lib -lcudnn
 ```
+
 You can also do a simple test to make sure CUDA is working properly.
 
 ```
@@ -252,18 +267,7 @@ This directory is write-protected by default. You can copy this folder to your h
 At this point, compiling a few test samples is possible, but first, you need to verify the correct XCode versions. This documentation is available here:
 <url>https://docs.nvidia.com/cuda/</url>
 
-For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation, which will be involved later in the process. 
 
-Download Xcode to your ~/Downloads/ directory.  Double click on it to uncompress it. This is time consuming, be patient. Ensure your computer has good ventilation to avoid thermal throttling. 
-
-After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler. These system commands run much faster than the UI copy and paste options. 
-```
-cd ~/Downloads/
-mv Xcode.app Xcode-9.2.app
-sudo mv Xcode-9.2.app /Applications
-sudo xcode-select -s /Applications/Xcode-9.2.app
-sudo xcodebuild -license
-```
 
 Now change directories to where the CUDA samples are stored and compile a few of them.
 ```
