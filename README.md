@@ -24,6 +24,41 @@ This guide is going to use option 2, building upon the tremendous work happening
 https://github.com/learex/macOS-eGPU
 
 
+# Step 0: Basic Installation of Software
+
+## R 
+
+Download the latest R version from https://www.r-project.org/.  At time of writing, version 3.5.1 was the latest release. 
+
+## RStudio 
+
+Download the lastest daily build from https://dailies.rstudio.com/. The daily builds ("beta" versions) of RStudio have advanced integration capabilities for Python into R. It is recommended that you download the latest daily build from RStudio. If you have issues on your computer, you can always try the latest public release. 
+
+Launch RStudio and install some additional packages beyond the base.
+```
+
+install.packages("tidyverse")
+install.packages("devtools")
+install.packages("roxygen2")
+install.packages("reticulate")
+install.packages("tensorflow")
+install.packages("keras")
+install.packages("tfruns")
+
+```
+
+## Anaconda and update Python Version
+
+Install Anaconda / Python 3.6 from https://www.anaconda.com/download/#macos. The latest build of anaconda will likely have a version of Python newer than what is available in the default installation. The systems that have been built and tested use version 3.6.4. Once Anaconda has been installed, you can switch underlying python versions by the following command:
+
+```
+conda install python=3.6.4
+```
+
+It is suspected that many other 3.6.* versions would work. Some online resources suggest having just straight python installed.  Anaconda with the IDEs (spyder, Jupiter) will be helpful in learning python and getting started. It is recommended that this is where most users start.
+
+As an aside on python, MacOS comes with a default version of python installed (2.7). This will be incompatiable with many modern packages. Anaconda will automatically mask out the old 2.7 installation on the Mac and make things like `pip install` work directly (instead of having to specify `pip3 install`). 
+
 # Step 1: Back up
 
 There will be several important changes to the OS and the configuration. You may elect to do a full system backup before beginning to a new external drive via Time Machine. If you have a previous Time Machine backup, this can be used, but sometimes, it is easier to have just one clean backup to work from. 
@@ -53,7 +88,7 @@ csrutil status
 ```
 At this point, SIP should indicate it has been disabled.
 
-Step 3: Run the macOS-eGPU script
+# Step 3: Run the macOS-eGPU script
 
 IMPORTANT: The eGPU should be disconnected from the computer at this point. You can have it all assembled, but do not plug it into the computer at this time.
 
