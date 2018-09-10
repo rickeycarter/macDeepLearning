@@ -1,6 +1,6 @@
 # macDeepLearning
 
-August 6, 2018
+Revised - September 10, 2018
 
 # Setup and configuration help for external eGPUs on a Mac System. 
 
