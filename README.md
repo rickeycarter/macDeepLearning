@@ -90,7 +90,7 @@ sudo sysctl debug.lowpri_throttle_enabled=1
 
 # Step 2: disable system integrity protections (referred to as SIP frequently online)
 
-In the terminal, enter
+In the latest version of macOS, to disable SIP, you need to boot into recovery mode.  You do this by pushing command - option - r right as you hear the chime during the boot.  Then from a terminal, enter
 ```
 csrutil disable
 ```
