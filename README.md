@@ -28,6 +28,8 @@ https://github.com/learex/macOS-eGPU
 
 * Show hidden files: shift + command + period
 
+* Open an app from the terminal so that environment variables are seen: `open -a {app name}`, e.g., `open -a RStudio`. 
+
 
 # Step 0: Basic Installation of Software
 
