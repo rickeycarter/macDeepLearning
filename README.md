@@ -1,6 +1,6 @@
 # macDeepLearning
 
-August 6, 2018
+Revised - September 10, 2018
 
 # Setup and configuration help for external eGPUs on a Mac System. 
 
@@ -24,6 +24,71 @@ This guide is going to use option 2, building upon the tremendous work happening
 https://github.com/learex/macOS-eGPU
 
 
+## Handy macOS commands
+
+* Show hidden files in Finder: shift + command + period
+
+* Open a terminal prompt quickly from the keyboard: command + space bar + type terminal (in the spotlight search) and press enter
+
+* Open an app from the terminal so that environment variables are seen: `open -a {app name}`, e.g., `open -a RStudio`. 
+
+* Show GPU and CPU utilization. Open the Activity Monitor app. Command + 4 opens a panel with GPU utilziation. Command + 3 show the CPU core utilization.
+
+# Step 0: Basic Installation of Software
+
+## R 
+
+Download the latest R version from https://www.r-project.org/.  At time of writing, version 3.5.1 was the latest release. 
+
+## RStudio 
+
+Download the lastest daily build from https://dailies.rstudio.com/. The daily builds ("beta" versions) of RStudio have advanced integration capabilities for Python into R. It is recommended that you download the latest daily build from RStudio. If you have issues on your computer, you can always try the latest public release. 
+
+Launch RStudio and install some additional packages beyond the base.
+```
+
+install.packages("tidyverse")
+install.packages("devtools")
+install.packages("roxygen2")
+install.packages("reticulate")
+install.packages("tensorflow")
+install.packages("keras")
+install.packages("tfruns")
+
+```
+
+## Anaconda 
+
+Install Anaconda / Python 3.6 from https://www.anaconda.com/download/#macos. The latest build of anaconda will likely have a version of Python newer than what is available in the default installation. The systems that have been built and tested use version 3.6.4. Once Anaconda has been installed, you can switch underlying python versions by the following command:
+
+```
+conda install python=3.6.4
+```
+
+If you are editing native python files, you will probably want to update Spyder at first. It gets updated frequently and constantly prompts you to update. To do so, just type in a terminal
+
+```
+conda update spyder
+```
+
+Note: It is suspected that many other 3.6.* versions would work. Some online resources suggest having just straight python installed.  Anaconda with the IDEs (spyder, Jupiter) will be helpful in learning python and getting started. It is recommended that this is where most users start.
+
+As an aside on python, MacOS comes with a default version of python installed (2.7). This will be incompatiable with many modern packages. Anaconda will automatically mask out the old 2.7 installation on the Mac and make things like `pip install` work directly (instead of having to specify `pip3 install`). 
+
+## XCode 9.2
+For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation and compilation, which will be involved later in the process. 
+
+Download Xcode version 9.2 from https://developer.apple.com/downloads.  This will save the Xcode_9.2.xip file to your ~/Downloads/ directory.  Double click on it to uncompress it. This is time consuming, be patient. Ensure your computer has good ventilation to avoid thermal throttling. It is surprisingly computationally intensive. 
+
+After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler. These system commands run much faster than the UI copy and paste options. 
+```
+cd ~/Downloads/
+mv Xcode.app Xcode-9.2.app
+sudo mv Xcode-9.2.app /Applications
+sudo xcode-select -s /Applications/Xcode-9.2.app
+sudo xcodebuild -license
+```
+
 # Step 1: Back up
 
 There will be several important changes to the OS and the configuration. You may elect to do a full system backup before beginning to a new external drive via Time Machine. If you have a previous Time Machine backup, this can be used, but sometimes, it is easier to have just one clean backup to work from. 
@@ -40,7 +105,7 @@ sudo sysctl debug.lowpri_throttle_enabled=1
 
 # Step 2: disable system integrity protections (referred to as SIP frequently online)
 
-In the terminal, enter
+In the latest version of macOS, to disable SIP, you need to boot into recovery mode.  You do this by pushing command + r right as the computer starts to boot. Continuing holding the keys down until you see a loading menu on the screen. You may be presented with a dialogue box to recover or inspect the computer. You can ignore this and locate the terminal command from the menu bar.  Then from a terminal, enter
 ```
 csrutil disable
 ```
@@ -53,7 +118,7 @@ csrutil status
 ```
 At this point, SIP should indicate it has been disabled.
 
-Step 3: Run the macOS-eGPU script
+# Step 3: Run the macOS-eGPU script
 
 IMPORTANT: The eGPU should be disconnected from the computer at this point. You can have it all assembled, but do not plug it into the computer at this time.
 
@@ -70,7 +135,7 @@ bash <(curl -s https://raw.githubusercontent.com/learex/macOS-eGPU/master/macOS-
 
 * Run a second time but using no flags (automatic installation mode)
 
-Since the program is already install, simply run the following
+Since the program is already installed, simply run the following
 
 ```
 macos-egpu
@@ -122,7 +187,7 @@ type
 nano .bashrc
 ```
 
-In the editor window, paste in the following parameters
+In the editor window, paste in the following parameters:
 
 ```
 export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
@@ -142,7 +207,8 @@ If you are not used to using nano, use control o to write the file changes to di
 nano .bash_profile
 ```
 
-Then paste in this command
+Then paste in this command below the anaconda parameter that should be present in the file:
+
 ```
 if [ -f $HOME/.bashrc ]; then
         source $HOME/.bashrc
@@ -161,7 +227,7 @@ Access to NVIDIA deep learning libraries requires access to their developer site
 
 Go to developer.nvidia.com and follow the steps for registration. cuDNN can be downloaded at <url>https://developer.nvidia.com/cudnn</url>. 
 
-You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.1.4 for Mac OSX for CUDA 9.2.  
+You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.2.1 for Mac OSX for CUDA 9.2.  
 
 After downloading and uncompressing the files, follow the steps to copy the libraries over to the appropriate directories.
 <url>https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html</url>
@@ -175,11 +241,12 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h
 sudo chmod a+r /usr/local/cuda/lib/libcudnn*
 ```
 
-(the necessary environment variable for cuDNN was set above into the .bashrc file). So, you should be able to run this command without error. The system may report a warning, but an error is a problem. If you have an error, verify the paths above and reboot.
+(the necessary environment variable for cuDNN was set above into the .bashrc file). So, you should be able to run this command without error. The system may report a warning, but an error is a problem. If you have an error, verify the paths above and reboot.  You may see an error that version 9.1 of host complier is not supported. We will update that below.
 
 ```
 echo -e '#include"cudnn.h"\n void main(){}' | nvcc -x c - -o /dev/null -I/usr/local/cuda/include -L/usr/local/cuda/lib -lcudnn
 ```
+
 You can also do a simple test to make sure CUDA is working properly.
 
 ```
@@ -201,18 +268,7 @@ This directory is write-protected by default. You can copy this folder to your h
 At this point, compiling a few test samples is possible, but first, you need to verify the correct XCode versions. This documentation is available here:
 <url>https://docs.nvidia.com/cuda/</url>
 
-For CUDA 9.2, Xcode 9.2 is required. This likely means you will need to download version 9.2 from Apple. This, like NVIDIA, will require a free developer account to access to code.  You can have multiple versions of Xcode installed on your computer, so a naming strategy is required. Multiple versions of Xcode will be required for Tensorflow installation, which will be involved later in the process. 
 
-Download Xcode to your ~/Downloads/ directory.  Double click on it to uncompress it. This is time consuming, be patient. Ensure your computer has good ventilation to avoid thermal throttling. 
-
-After it has uncompressed, run the following commands to move (and rename) Xcode (version 9.2) and set it as your default compiler. These system commands run much faster than the UI copy and paste options. 
-```
-cd ~/Downloads/
-mv Xcode.app Xcode-9.2.app
-sudo mv Xcode-9.2.app /Applications
-sudo xcode-select -s /Applications/Xcode-9.2.app
-sudo xcodebuild -license
-```
 
 Now change directories to where the CUDA samples are stored and compile a few of them.
 ```
