@@ -24,6 +24,11 @@ This guide is going to use option 2, building upon the tremendous work happening
 https://github.com/learex/macOS-eGPU
 
 
+## Handy macOS commands
+
+* Show hidden files: shift + command + period
+
+
 # Step 0: Basic Installation of Software
 
 ## R 
