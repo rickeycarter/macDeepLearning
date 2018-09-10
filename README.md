@@ -172,7 +172,7 @@ type
 nano .bashrc
 ```
 
-In the editor window, paste in the following parameters below the anaconda parameter that should be present in the file.
+In the editor window, paste in the following parameters:
 
 ```
 export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
@@ -192,7 +192,8 @@ If you are not used to using nano, use control o to write the file changes to di
 nano .bash_profile
 ```
 
-Then paste in this command
+Then paste in this command below the anaconda parameter that should be present in the file:
+
 ```
 if [ -f $HOME/.bashrc ]; then
         source $HOME/.bashrc
