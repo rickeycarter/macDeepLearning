@@ -47,7 +47,7 @@ install.packages("tfruns")
 
 ```
 
-## Anaconda and update Python Version
+## Anaconda 
 
 Install Anaconda / Python 3.6 from https://www.anaconda.com/download/#macos. The latest build of anaconda will likely have a version of Python newer than what is available in the default installation. The systems that have been built and tested use version 3.6.4. Once Anaconda has been installed, you can switch underlying python versions by the following command:
 
