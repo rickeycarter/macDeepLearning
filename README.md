@@ -120,7 +120,7 @@ bash <(curl -s https://raw.githubusercontent.com/learex/macOS-eGPU/master/macOS-
 
 * Run a second time but using no flags (automatic installation mode)
 
-Since the program is already install, simply run the following
+Since the program is already installed, simply run the following
 
 ```
 macos-egpu
@@ -172,7 +172,7 @@ type
 nano .bashrc
 ```
 
-In the editor window, paste in the following parameters
+In the editor window, paste in the following parameters below the anaconda parameter that should be present in the file.
 
 ```
 export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
