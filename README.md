@@ -26,7 +26,9 @@ https://github.com/learex/macOS-eGPU
 
 ## Handy macOS commands
 
-* Show hidden files: shift + command + period
+* Show hidden files in Finder: shift + command + period
+
+* Open a terminal prompt quickly from the keyboard: command + space bar + type terminal (in the spotlight search) and press enter
 
 * Open an app from the terminal so that environment variables are seen: `open -a {app name}`, e.g., `open -a RStudio`. 
 
