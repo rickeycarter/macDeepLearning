@@ -64,7 +64,13 @@ Install Anaconda / Python 3.6 from https://www.anaconda.com/download/#macos. The
 conda install python=3.6.4
 ```
 
-It is suspected that many other 3.6.* versions would work. Some online resources suggest having just straight python installed.  Anaconda with the IDEs (spyder, Jupiter) will be helpful in learning python and getting started. It is recommended that this is where most users start.
+If you are editing native python files, you will probably want to update Spyder at first. It gets updated frequently and constantly prompts you to update. To do so, just type in a terminal
+
+```
+conda update spyder
+```
+
+Note: It is suspected that many other 3.6.* versions would work. Some online resources suggest having just straight python installed.  Anaconda with the IDEs (spyder, Jupiter) will be helpful in learning python and getting started. It is recommended that this is where most users start.
 
 As an aside on python, MacOS comes with a default version of python installed (2.7). This will be incompatiable with many modern packages. Anaconda will automatically mask out the old 2.7 installation on the Mac and make things like `pip install` work directly (instead of having to specify `pip3 install`). 
 
