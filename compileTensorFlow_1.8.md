@@ -14,7 +14,7 @@ Prerequisites
 
 * Follow the instructions on the TensorFlow compilation to install Bazel and obtain the correct Xcode version needed to compile.
 
-* Make a working directory to put the GIT clone into. For example, within your home drive, you can make a directory called `tf19`. While this is not technically required, you may find yourself trying to compile various versions of TensorFlow. Cloning the repository into this directory allows you to create parallel environments (and configuration files) for various versions of TensorFlow. Sure, git management can also make this happen, but this is much cleaner for someone new to GIT.
+* Make a working directory to put the GIT clone into. For example, within your home drive, you can make a directory called `tf_1.8`. While this is not technically required, you may find yourself trying to compile various versions of TensorFlow. Cloning the repository into this directory allows you to create parallel environments (and configuration files) for various versions of TensorFlow. Sure, git management can also make this happen, but this is much cleaner for someone new to GIT.
 
 
 ** Suggested workflow
@@ -29,7 +29,7 @@ git tag
 ```
 The last command lists out all versions of TensorFlow that are contained in the repository. These change with time so it is helpful to list out the versions prior to selecting (checking out) a version. 
 
-Now, checkout the version you desire. We will use the final release of version 1.9.
+Now, checkout the version you desire. 
 
 ```
 git checkout v1.8.0
@@ -59,18 +59,19 @@ sudo xcode-select -s /Applications/Xcode-9.2.app
 If after installing and configuring bazel using the bazel build link, you can install the latest version using:
 
 ```
-brew update bazel
+brew upgrade bazel
 ```
 
 Notes on the configuration commands.
 
 For most items, you will say no. 
 
-For the cuDNN version, you need to match the file name of `libcudnn.7.dylib` stored in /usr/local/cuda. For the time being, that is a numeric 7. No decimal places.
+For the cuDNN version, you need to match the file name of `libcudnn.7.dylib` stored in /usr/local/cuda/lib. For the time being, that is a numeric 7. No decimal places.
 
 
 
 
 # Prebuilt Wheel
 
-A pre-built TensorFlow wheel for CUDA 9.2, Python version 3.6.4 is available.  See files.
+A pre-built TensorFlow wheel for CUDA 9.2, cuDNN 7.1 Python version 3.6.4 is available.  See files.  
+## Note: cuDNN was recently updated to 7.2. As such, a new wheel is needed
