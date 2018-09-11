@@ -310,6 +310,41 @@ Example of a step-by-step Compilation:
 <url>https://gist.github.com/orpcam/73b208271856fa2ae7efc00a8768bd7c#gistcomment-2397350</url>
 
 
-# Next Steps - Compile TensorFlow
+# Step 8 - Install Tensorflow with GPU Support
+ 
+## Use a pre-built wheel
+ 
+If you have followed the above plan and utilized CUDA 9.1 and Python 3.6.4, you *should* be able to download the TF 1.5 wheel in this repository and install it to your system. In my experience, using pre-built wheels may or may not work.  Your experience may vary.  
+ 
+```
+sudo -H pip install tensorflow{push tab to autocomplete full file name}
+sudo -H pip install keras
+```
+Take note to see if there are any packages that are required that are not installed. For example, you may need to run the following
+ 
+```
+sudo -H pip install msgpack
+```
+ 
+## Compile TensorFlow from source
+ 
+TensorFlow specific builds and configurations are posted. These are a work in progress. There are few dedicated pages in this repository that give some guidance on building TF from sources. We would welcome additional contributions to help expedite the compilation of the new versions of TF.
+ 
+ 
+# Step 9 - Run a test program
+ 
+To get started with exploring the use of the GPU, consider the pre-written R programs available here:
+https://keras.rstudio.com/articles/examples/index.html
+ 
+The MNIST_cnn (https://keras.rstudio.com/articles/examples/mnist_cnn.html) is a good program to start as it will run reasonably quickly without a GPU so you can realistically compare the "before" and "after" effect.
+ 
+Some benchmarks of this program (times are after data has been download):
+iMac late 2015, 3.2 GHz i5 processor, 32GB of 1867 DDR3 RAM
+CPU only: 11.74 minutes
+With Titan Xp: 57.8 seconds (thunderbolt 2 connectivity to GPU enclosure)
 
-TensorFlow specific builds and configurations are posted. These are a work in progress. Precompiled wheels are also made available as we have more success with compilation.
+iMac Pro 2017, 3.2 GHz Intel Xeon W (8 Core chip), 64 GB of 2666 DDR4 RAM
+CPU only: 10.91 minutes
+With Titan Xp: 54.6 seconds
+
+The iMac Pro on this case was only about 6% faster than the older iMac.  The GPU reduced the computing time by approximately 93%! Basically, you need a GPU for deep learning. 
