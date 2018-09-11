@@ -167,6 +167,10 @@ macos-egpu --cudaDriver
 ```
 
 Install the toolkit.
+
+NOTE: 9/11/18 - CUDA 9.2 and TensorFlow 1.5+ do not appear to compile successfully. Recommend building against CUDA 9.1.  For the time being, skip these steps and install the CUDA toolkit and cuDNN version 9.1 directly from NVIDIA
+
+(https://developer.download.nvidia.com/compute/cuda/9.1/Prod/docs/sidebar/CUDA_Installation_Guide_Mac.pdf)
 ```
 macos-egpu --cudaToolkit
 ```
@@ -176,7 +180,7 @@ Install the CUDA samples. They are helpful for testing the GPU once it is attach
 macos-egpu --cudaSamples
 ```
 
-The computer will have CUDA 9.2 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
+The computer will have CUDA 9.1 installed. For the CUDA to be fully operational for deep learning, system parameters need to be set.
 
 * Edit `.bashrc`
 
@@ -190,9 +194,9 @@ nano .bashrc
 In the editor window, paste in the following parameters:
 
 ```
-export PATH=/Developer/NVIDIA/CUDA-9.2/bin${PATH:+:${PATH}}
+export PATH=/Developer/NVIDIA/CUDA-9.1/bin${PATH:+:${PATH}}
 
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.2/lib\ ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.1/lib\ ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
 
 export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
 
@@ -227,7 +231,7 @@ Access to NVIDIA deep learning libraries requires access to their developer site
 
 Go to developer.nvidia.com and follow the steps for registration. cuDNN can be downloaded at <url>https://developer.nvidia.com/cudnn</url>. 
 
-You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.2.1 for Mac OSX for CUDA 9.2.  
+You will need to navigate through this page to download the correct version. At this time, that is cuDNN 7.0.5 for Mac OSX for CUDA 9.1.  This version is listed under the archived versions.  
 
 After downloading and uncompressing the files, follow the steps to copy the libraries over to the appropriate directories.
 <url>https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html</url>
@@ -261,7 +265,7 @@ This should return something along these lines. An error indicates a problem wit
  
 # Step 6: Compile a few CUDA test programs
 
-The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\CUDA-9.2\samples`.
+The CUDA toolkit comes with downloaded samples. Using the installation appraoch above, you will have the samples installed in `\Developer\NVIDIA\CUDA-9.1\samples`.  If you installed the toolkit manually, you likely have a copy of the samples in your home directory.
 
 This directory is write-protected by default. You can copy this folder to your home drive if you would like, or, you could change the permissions on this directory only. Using finder, right click over the samples directory and select "get info". From here, you will see the permissions tab. Click the padlock in the lower right to unlock the permission. Click the "+" and add your username. Change the permission to read + write. There's one last step which is in the small gear: select "apply to enclosed items" to recursively apply the permissions.
 
@@ -272,7 +276,7 @@ At this point, compiling a few test samples is possible, but first, you need to 
 
 Now change directories to where the CUDA samples are stored and compile a few of them.
 ```
-cd /Developer/NVIDIA/CUDA-9.2/samples
+cd /Developer/NVIDIA/CUDA-9.1/samples
 make -C 1_Utilities/deviceQuery
 ```
 
@@ -280,7 +284,7 @@ make -C 1_Utilities/deviceQuery
 
 Once you compile the deviceQuery program, the output will be located here:
 ```
-/Developer/NVIDIA/CUDA-9.2/samples/bin/x86_64/darwin/release
+/Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release
 ```
 
 You can double click on the program and run it without the eGPU connected.  It should report a CUDA error indicating no device was found. This is normal.  
